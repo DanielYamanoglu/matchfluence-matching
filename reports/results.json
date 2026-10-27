@@ -1,0 +1,41 @@
+{
+  "embedder": "tfidf",
+  "k": 10,
+  "campaigns_evaluated": 80,
+  "mean_pool_size": 158.6,
+  "relevant_threshold": "grade >= 2",
+  "methods": {
+    "random": {
+      "precision@10": 0.1337,
+      "ndcg@10": 0.1734,
+      "audience_overlap@10": 0.4622,
+      "engagement_rate@10": 0.0553
+    },
+    "semantic_only": {
+      "precision@10": 0.8363,
+      "ndcg@10": 0.8468,
+      "audience_overlap@10": 0.4458,
+      "engagement_rate@10": 0.0571
+    },
+    "hybrid": {
+      "precision@10": 0.8213,
+      "ndcg@10": 0.8613,
+      "audience_overlap@10": 0.4961,
+      "engagement_rate@10": 0.0599
+    }
+  },
+  "hybrid_minus_semantic_precision@10": {
+    "mean_diff": -0.015,
+    "ci95": [
+      -0.0262,
+      -0.0025
+    ]
+  },
+  "hybrid_minus_semantic_ndcg@10": {
+    "mean_diff": 0.0145,
+    "ci95": [
+      0.0045,
+      0.024
+    ]
+  }
+}

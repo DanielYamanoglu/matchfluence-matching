@@ -1,0 +1,1075 @@
+[
+ {
+  "id": "cp_000",
+  "brand_id": "br_009",
+  "title": "Finance launch 000",
+  "brief": "We are launching investment platforms and want creators who explain budgeting. Looking for down-to-earth content about side hustle, investing, stocks.",
+  "target_countries": [
+   "GB"
+  ],
+  "min_followers": 10000,
+  "max_followers": 500000,
+  "budget_usd": 6000.0,
+  "niche": "finance"
+ },
+ {
+  "id": "cp_001",
+  "brand_id": "br_000",
+  "title": "Tech launch 001",
+  "brief": "We are launching laptop stands and want creators who show desk setups. Looking for educational content about coding, smartphone, setup.",
+  "target_countries": [
+   "BR",
+   "GB"
+  ],
+  "min_followers": 5000,
+  "max_followers": 100000,
+  "budget_usd": 800.0,
+  "niche": "tech"
+ },
+ {
+  "id": "cp_002",
+  "brand_id": "br_031",
+  "title": "Fashion launch 002",
+  "brief": "We are launching sneakers and want creators who post daily outfits. Looking for premium content about outfit, lookbook, style.",
+  "target_countries": [
+   "FR"
+  ],
+  "min_followers": 5000,
+  "max_followers": 100000,
+  "budget_usd": 1500.0,
+  "niche": "fashion"
+ },
+ {
+  "id": "cp_003",
+  "brand_id": "br_030",
+  "title": "Fashion launch 003",
+  "brief": "We are launching sneakers and want creators who style streetwear looks. Looking for down-to-earth content about wardrobe, vintage, denim.",
+  "target_countries": [
+   "US",
+   "GB"
+  ],
+  "min_followers": 50000,
+  "max_followers": 1000000,
+  "budget_usd": 3000.0,
+  "niche": "fashion"
+ },
+ {
+  "id": "cp_004",
+  "brand_id": "br_006",
+  "title": "Beauty launch 004",
+  "brief": "We are launching facial serum and want creators who teach hair tutorials. Looking for educational content about tutorial, serum, haircare.",
+  "target_countries": [
+   "ES",
+   "US"
+  ],
+  "min_followers": 25000,
+  "max_followers": 200000,
+  "budget_usd": 800.0,
+  "niche": "beauty"
+ },
+ {
+  "id": "cp_005",
+  "brand_id": "br_009",
+  "title": "Home launch 005",
+  "brief": "We are launching kitchen gadgets and want creators who teach diy projects. Looking for down-to-earth content about furniture, kitchen, renovation.",
+  "target_countries": [
+   "GB"
+  ],
+  "min_followers": 5000,
+  "max_followers": 250000,
+  "budget_usd": 6000.0,
+  "niche": "home"
+ },
+ {
+  "id": "cp_006",
+  "brand_id": "br_009",
+  "title": "Travel launch 006",
+  "brief": "We are launching booking apps and want creators who guide city weekends. Looking for educational content about adventure, destinations, city guide.",
+  "target_countries": [
+   "BR",
+   "FR"
+  ],
+  "min_followers": 5000,
+  "max_followers": 100000,
+  "budget_usd": 1500.0,
+  "niche": "travel"
+ },
+ {
+  "id": "cp_007",
+  "brand_id": "br_019",
+  "title": "Fitness launch 007",
+  "brief": "We are launching running shoes and want creators who coach home workouts. Looking for premium content about workout, hiit, mobility.",
+  "target_countries": [
+   "FR",
+   "TR"
+  ],
+  "min_followers": 10000,
+  "max_followers": 500000,
+  "budget_usd": 800.0,
+  "niche": "fitness"
+ },
+ {
+  "id": "cp_008",
+  "brand_id": "br_001",
+  "title": "Parenting launch 008",
+  "brief": "We are launching educational toys and want creators who review baby gear. Looking for fun content about kids, activities, toddler.",
+  "target_countries": [
+   "BR"
+  ],
+  "min_followers": 5000,
+  "max_followers": 100000,
+  "budget_usd": 800.0,
+  "niche": "parenting"
+ },
+ {
+  "id": "cp_009",
+  "brand_id": "br_001",
+  "title": "Fitness launch 009",
+  "brief": "We are launching protein powder and want creators who coach home workouts. Looking for educational content about athlete, gym, strength.",
+  "target_countries": [
+   "ES",
+   "US"
+  ],
+  "min_followers": 5000,
+  "max_followers": 100000,
+  "budget_usd": 12000.0,
+  "niche": "fitness"
+ },
+ {
+  "id": "cp_010",
+  "brand_id": "br_019",
+  "title": "Fitness launch 010",
+  "brief": "We are launching protein powder and want creators who run marathons. Looking for premium content about protein, gym, training.",
+  "target_countries": [
+   "US"
+  ],
+  "min_followers": 50000,
+  "max_followers": 2500000,
+  "budget_usd": 800.0,
+  "niche": "fitness"
+ },
+ {
+  "id": "cp_011",
+  "brand_id": "br_024",
+  "title": "Nutrition launch 011",
+  "brief": "We are launching superfood snacks and want creators who review healthy snacks. Looking for educational content about plant-based, recipes, meal prep.",
+  "target_countries": [
+   "TR",
+   "CA"
+  ],
+  "min_followers": 10000,
+  "max_followers": 80000,
+  "budget_usd": 3000.0,
+  "niche": "nutrition"
+ },
+ {
+  "id": "cp_012",
+  "brand_id": "br_009",
+  "title": "Parenting launch 012",
+  "brief": "We are launching kids snacks and want creators who review baby gear. Looking for authentic content about activities, newborn, family.",
+  "target_countries": [
+   "DE"
+  ],
+  "min_followers": 25000,
+  "max_followers": 500000,
+  "budget_usd": 800.0,
+  "niche": "parenting"
+ },
+ {
+  "id": "cp_013",
+  "brand_id": "br_021",
+  "title": "Beauty launch 013",
+  "brief": "We are launching makeup palette and want creators who post skincare routines. Looking for down-to-earth content about makeup, skincare, haircare.",
+  "target_countries": [
+   "TR"
+  ],
+  "min_followers": 5000,
+  "max_followers": 250000,
+  "budget_usd": 1500.0,
+  "niche": "beauty"
+ },
+ {
+  "id": "cp_014",
+  "brand_id": "br_003",
+  "title": "Fashion launch 014",
+  "brief": "We are launching sneakers and want creators who style streetwear looks. Looking for educational content about sustainable, vintage, outfit.",
+  "target_countries": [
+   "TR",
+   "BR"
+  ],
+  "min_followers": 10000,
+  "max_followers": 200000,
+  "budget_usd": 1500.0,
+  "niche": "fashion"
+ },
+ {
+  "id": "cp_015",
+  "brand_id": "br_031",
+  "title": "Tech launch 015",
+  "brief": "We are launching wireless earbuds and want creators who show desk setups. Looking for educational content about coding, software, setup.",
+  "target_countries": [
+   "GB"
+  ],
+  "min_followers": 5000,
+  "max_followers": 100000,
+  "budget_usd": 6000.0,
+  "niche": "tech"
+ },
+ {
+  "id": "cp_016",
+  "brand_id": "br_019",
+  "title": "Gaming launch 016",
+  "brief": "We are launching mechanical keyboards and want creators who review new releases. Looking for premium content about pc build, console, esports.",
+  "target_countries": [
+   "CA",
+   "TR"
+  ],
+  "min_followers": 5000,
+  "max_followers": 40000,
+  "budget_usd": 12000.0,
+  "niche": "gaming"
+ },
+ {
+  "id": "cp_017",
+  "brand_id": "br_015",
+  "title": "Fashion launch 017",
+  "brief": "We are launching capsule wardrobe pieces and want creators who style streetwear looks. Looking for premium content about wardrobe, outfit, vintage.",
+  "target_countries": [
+   "FR"
+  ],
+  "min_followers": 25000,
+  "max_followers": 500000,
+  "budget_usd": 3000.0,
+  "niche": "fashion"
+ },
+ {
+  "id": "cp_018",
+  "brand_id": "br_012",
+  "title": "Tech launch 018",
+  "brief": "We are launching laptop stands and want creators who explain ai tools. Looking for authentic content about software, smartphone, ai tools.",
+  "target_countries": [
+   "FR"
+  ],
+  "min_followers": 10000,
+  "max_followers": 200000,
+  "budget_usd": 1500.0,
+  "niche": "tech"
+ },
+ {
+  "id": "cp_019",
+  "brand_id": "br_001",
+  "title": "Gaming launch 019",
+  "brief": "We are launching mechanical keyboards and want creators who review new releases. Looking for down-to-earth content about esports, multiplayer, rpg.",
+  "target_countries": [
+   "ES",
+   "US"
+  ],
+  "min_followers": 25000,
+  "max_followers": 500000,
+  "budget_usd": 800.0,
+  "niche": "gaming"
+ },
+ {
+  "id": "cp_020",
+  "brand_id": "br_039",
+  "title": "Home launch 020",
+  "brief": "We are launching houseplants and want creators who renovate apartments. Looking for down-to-earth content about renovation, furniture, kitchen.",
+  "target_countries": [
+   "US"
+  ],
+  "min_followers": 50000,
+  "max_followers": 1000000,
+  "budget_usd": 800.0,
+  "niche": "home"
+ },
+ {
+  "id": "cp_021",
+  "brand_id": "br_037",
+  "title": "Fashion launch 021",
+  "brief": "We are launching capsule wardrobe pieces and want creators who post daily outfits. Looking for premium content about streetwear, wardrobe, style.",
+  "target_countries": [
+   "ES"
+  ],
+  "min_followers": 10000,
+  "max_followers": 500000,
+  "budget_usd": 6000.0,
+  "niche": "fashion"
+ },
+ {
+  "id": "cp_022",
+  "brand_id": "br_005",
+  "title": "Fitness launch 022",
+  "brief": "We are launching running shoes and want creators who coach home workouts. Looking for premium content about athlete, gym, strength.",
+  "target_countries": [
+   "ES"
+  ],
+  "min_followers": 10000,
+  "max_followers": 500000,
+  "budget_usd": 12000.0,
+  "niche": "fitness"
+ },
+ {
+  "id": "cp_023",
+  "brand_id": "br_036",
+  "title": "Fitness launch 023",
+  "brief": "We are launching protein powder and want creators who coach home workouts. Looking for down-to-earth content about hiit, protein, workout.",
+  "target_countries": [
+   "US",
+   "DE"
+  ],
+  "min_followers": 5000,
+  "max_followers": 250000,
+  "budget_usd": 12000.0,
+  "niche": "fitness"
+ },
+ {
+  "id": "cp_024",
+  "brand_id": "br_027",
+  "title": "Tech launch 024",
+  "brief": "We are launching laptop stands and want creators who show desk setups. Looking for fun content about smartphone, gadgets, laptop.",
+  "target_countries": [
+   "TR"
+  ],
+  "min_followers": 50000,
+  "max_followers": 1000000,
+  "budget_usd": 6000.0,
+  "niche": "tech"
+ },
+ {
+  "id": "cp_025",
+  "brand_id": "br_036",
+  "title": "Beauty launch 025",
+  "brief": "We are launching makeup palette and want creators who post skincare routines. Looking for educational content about routine, serum, cosmetics.",
+  "target_countries": [
+   "US",
+   "GB"
+  ],
+  "min_followers": 25000,
+  "max_followers": 200000,
+  "budget_usd": 3000.0,
+  "niche": "beauty"
+ },
+ {
+  "id": "cp_026",
+  "brand_id": "br_003",
+  "title": "Finance launch 026",
+  "brief": "We are launching investment platforms and want creators who explain budgeting. Looking for educational content about frugal, stocks, money.",
+  "target_countries": [
+   "CA"
+  ],
+  "min_followers": 5000,
+  "max_followers": 40000,
+  "budget_usd": 3000.0,
+  "niche": "finance"
+ },
+ {
+  "id": "cp_027",
+  "brand_id": "br_032",
+  "title": "Parenting launch 027",
+  "brief": "We are launching kids snacks and want creators who document family life. Looking for fun content about baby, mom life, family.",
+  "target_countries": [
+   "GB"
+  ],
+  "min_followers": 5000,
+  "max_followers": 40000,
+  "budget_usd": 800.0,
+  "niche": "parenting"
+ },
+ {
+  "id": "cp_028",
+  "brand_id": "br_034",
+  "title": "Nutrition launch 028",
+  "brief": "We are launching superfood snacks and want creators who share meal prep plans. Looking for down-to-earth content about wellness, recipes, protein.",
+  "target_countries": [
+   "TR"
+  ],
+  "min_followers": 25000,
+  "max_followers": 1250000,
+  "budget_usd": 6000.0,
+  "niche": "nutrition"
+ },
+ {
+  "id": "cp_029",
+  "brand_id": "br_010",
+  "title": "Home launch 029",
+  "brief": "We are launching houseplants and want creators who style interiors. Looking for down-to-earth content about plants, furniture, decor.",
+  "target_countries": [
+   "FR"
+  ],
+  "min_followers": 10000,
+  "max_followers": 500000,
+  "budget_usd": 800.0,
+  "niche": "home"
+ },
+ {
+  "id": "cp_030",
+  "brand_id": "br_023",
+  "title": "Parenting launch 030",
+  "brief": "We are launching kids snacks and want creators who review baby gear. Looking for premium content about kids, school, family.",
+  "target_countries": [
+   "BR"
+  ],
+  "min_followers": 25000,
+  "max_followers": 500000,
+  "budget_usd": 1500.0,
+  "niche": "parenting"
+ },
+ {
+  "id": "cp_031",
+  "brand_id": "br_029",
+  "title": "Parenting launch 031",
+  "brief": "We are launching baby carriers and want creators who share toddler activities. Looking for educational content about family, toddler, kids.",
+  "target_countries": [
+   "ES"
+  ],
+  "min_followers": 50000,
+  "max_followers": 1000000,
+  "budget_usd": 1500.0,
+  "niche": "parenting"
+ },
+ {
+  "id": "cp_032",
+  "brand_id": "br_009",
+  "title": "Beauty launch 032",
+  "brief": "We are launching hair oil and want creators who teach hair tutorials. Looking for down-to-earth content about glow, cosmetics, skincare.",
+  "target_countries": [
+   "FR"
+  ],
+  "min_followers": 10000,
+  "max_followers": 200000,
+  "budget_usd": 12000.0,
+  "niche": "beauty"
+ },
+ {
+  "id": "cp_033",
+  "brand_id": "br_016",
+  "title": "Beauty launch 033",
+  "brief": "We are launching facial serum and want creators who teach hair tutorials. Looking for fun content about serum, haircare, makeup.",
+  "target_countries": [
+   "US"
+  ],
+  "min_followers": 25000,
+  "max_followers": 200000,
+  "budget_usd": 1500.0,
+  "niche": "beauty"
+ },
+ {
+  "id": "cp_034",
+  "brand_id": "br_031",
+  "title": "Parenting launch 034",
+  "brief": "We are launching baby carriers and want creators who document family life. Looking for down-to-earth content about baby, family, activities.",
+  "target_countries": [
+   "US"
+  ],
+  "min_followers": 10000,
+  "max_followers": 80000,
+  "budget_usd": 12000.0,
+  "niche": "parenting"
+ },
+ {
+  "id": "cp_035",
+  "brand_id": "br_034",
+  "title": "Nutrition launch 035",
+  "brief": "We are launching meal kits and want creators who review healthy snacks. Looking for educational content about wellness, protein, recipes.",
+  "target_countries": [
+   "GB"
+  ],
+  "min_followers": 25000,
+  "max_followers": 200000,
+  "budget_usd": 3000.0,
+  "niche": "nutrition"
+ },
+ {
+  "id": "cp_036",
+  "brand_id": "br_032",
+  "title": "Nutrition launch 036",
+  "brief": "We are launching meal kits and want creators who review healthy snacks. Looking for premium content about cooking, healthy, plant-based.",
+  "target_countries": [
+   "ES",
+   "GB"
+  ],
+  "min_followers": 5000,
+  "max_followers": 250000,
+  "budget_usd": 800.0,
+  "niche": "nutrition"
+ },
+ {
+  "id": "cp_037",
+  "brand_id": "br_012",
+  "title": "Finance launch 037",
+  "brief": "We are launching credit cards and want creators who explain budgeting. Looking for educational content about frugal, side hustle, credit.",
+  "target_countries": [
+   "GB"
+  ],
+  "min_followers": 10000,
+  "max_followers": 80000,
+  "budget_usd": 800.0,
+  "niche": "finance"
+ },
+ {
+  "id": "cp_038",
+  "brand_id": "br_011",
+  "title": "Finance launch 038",
+  "brief": "We are launching investment platforms and want creators who teach investing basics. Looking for authentic content about stocks, money, budgeting.",
+  "target_countries": [
+   "FR"
+  ],
+  "min_followers": 10000,
+  "max_followers": 80000,
+  "budget_usd": 800.0,
+  "niche": "finance"
+ },
+ {
+  "id": "cp_039",
+  "brand_id": "br_006",
+  "title": "Tech launch 039",
+  "brief": "We are launching wireless earbuds and want creators who show desk setups. Looking for educational content about software, ai tools, laptop.",
+  "target_countries": [
+   "TR"
+  ],
+  "min_followers": 5000,
+  "max_followers": 250000,
+  "budget_usd": 6000.0,
+  "niche": "tech"
+ },
+ {
+  "id": "cp_040",
+  "brand_id": "br_018",
+  "title": "Beauty launch 040",
+  "brief": "We are launching makeup palette and want creators who review makeup palettes. Looking for authentic content about skincare, haircare, glow.",
+  "target_countries": [
+   "ES",
+   "FR"
+  ],
+  "min_followers": 10000,
+  "max_followers": 500000,
+  "budget_usd": 6000.0,
+  "niche": "beauty"
+ },
+ {
+  "id": "cp_041",
+  "brand_id": "br_019",
+  "title": "Travel launch 041",
+  "brief": "We are launching booking apps and want creators who guide city weekends. Looking for down-to-earth content about destinations, hiking, city guide.",
+  "target_countries": [
+   "TR",
+   "ES"
+  ],
+  "min_followers": 50000,
+  "max_followers": 1000000,
+  "budget_usd": 6000.0,
+  "niche": "travel"
+ },
+ {
+  "id": "cp_042",
+  "brand_id": "br_019",
+  "title": "Fitness launch 042",
+  "brief": "We are launching running shoes and want creators who coach home workouts. Looking for premium content about athlete, protein, training.",
+  "target_countries": [
+   "DE"
+  ],
+  "min_followers": 50000,
+  "max_followers": 2500000,
+  "budget_usd": 800.0,
+  "niche": "fitness"
+ },
+ {
+  "id": "cp_043",
+  "brand_id": "br_024",
+  "title": "Parenting launch 043",
+  "brief": "We are launching educational toys and want creators who review baby gear. Looking for authentic content about baby, family, school.",
+  "target_countries": [
+   "CA"
+  ],
+  "min_followers": 25000,
+  "max_followers": 200000,
+  "budget_usd": 1500.0,
+  "niche": "parenting"
+ },
+ {
+  "id": "cp_044",
+  "brand_id": "br_012",
+  "title": "Fitness launch 044",
+  "brief": "We are launching protein powder and want creators who run marathons. Looking for authentic content about hiit, workout, protein.",
+  "target_countries": [
+   "US"
+  ],
+  "min_followers": 5000,
+  "max_followers": 40000,
+  "budget_usd": 800.0,
+  "niche": "fitness"
+ },
+ {
+  "id": "cp_045",
+  "brand_id": "br_037",
+  "title": "Parenting launch 045",
+  "brief": "We are launching kids snacks and want creators who share toddler activities. Looking for premium content about newborn, toddler, activities.",
+  "target_countries": [
+   "GB",
+   "TR"
+  ],
+  "min_followers": 5000,
+  "max_followers": 40000,
+  "budget_usd": 12000.0,
+  "niche": "parenting"
+ },
+ {
+  "id": "cp_046",
+  "brand_id": "br_024",
+  "title": "Nutrition launch 046",
+  "brief": "We are launching vitamin supplements and want creators who review healthy snacks. Looking for fun content about plant-based, meal prep, cooking.",
+  "target_countries": [
+   "US",
+   "FR"
+  ],
+  "min_followers": 25000,
+  "max_followers": 1250000,
+  "budget_usd": 800.0,
+  "niche": "nutrition"
+ },
+ {
+  "id": "cp_047",
+  "brand_id": "br_018",
+  "title": "Finance launch 047",
+  "brief": "We are launching credit cards and want creators who teach investing basics. Looking for educational content about money, stocks, side hustle.",
+  "target_countries": [
+   "GB",
+   "BR"
+  ],
+  "min_followers": 50000,
+  "max_followers": 1000000,
+  "budget_usd": 3000.0,
+  "niche": "finance"
+ },
+ {
+  "id": "cp_048",
+  "brand_id": "br_034",
+  "title": "Tech launch 048",
+  "brief": "We are launching laptop stands and want creators who review gadgets. Looking for down-to-earth content about review, smartphone, coding.",
+  "target_countries": [
+   "FR"
+  ],
+  "min_followers": 25000,
+  "max_followers": 1250000,
+  "budget_usd": 3000.0,
+  "niche": "tech"
+ },
+ {
+  "id": "cp_049",
+  "brand_id": "br_036",
+  "title": "Finance launch 049",
+  "brief": "We are launching budgeting apps and want creators who teach investing basics. Looking for down-to-earth content about savings, budgeting, investing.",
+  "target_countries": [
+   "CA",
+   "ES"
+  ],
+  "min_followers": 25000,
+  "max_followers": 200000,
+  "budget_usd": 6000.0,
+  "niche": "finance"
+ },
+ {
+  "id": "cp_050",
+  "brand_id": "br_007",
+  "title": "Gaming launch 050",
+  "brief": "We are launching gaming headsets and want creators who review new releases. Looking for authentic content about console, esports, speedrun.",
+  "target_countries": [
+   "TR",
+   "GB"
+  ],
+  "min_followers": 10000,
+  "max_followers": 80000,
+  "budget_usd": 1500.0,
+  "niche": "gaming"
+ },
+ {
+  "id": "cp_051",
+  "brand_id": "br_033",
+  "title": "Fitness launch 051",
+  "brief": "We are launching running shoes and want creators who lift weights. Looking for down-to-earth content about protein, mobility, strength.",
+  "target_countries": [
+   "CA",
+   "GB"
+  ],
+  "min_followers": 10000,
+  "max_followers": 200000,
+  "budget_usd": 6000.0,
+  "niche": "fitness"
+ },
+ {
+  "id": "cp_052",
+  "brand_id": "br_027",
+  "title": "Fitness launch 052",
+  "brief": "We are launching running shoes and want creators who run marathons. Looking for authentic content about training, hiit, strength.",
+  "target_countries": [
+   "GB",
+   "BR"
+  ],
+  "min_followers": 25000,
+  "max_followers": 200000,
+  "budget_usd": 3000.0,
+  "niche": "fitness"
+ },
+ {
+  "id": "cp_053",
+  "brand_id": "br_007",
+  "title": "Tech launch 053",
+  "brief": "We are launching laptop stands and want creators who explain ai tools. Looking for down-to-earth content about software, gadgets, laptop.",
+  "target_countries": [
+   "DE",
+   "ES"
+  ],
+  "min_followers": 50000,
+  "max_followers": 400000,
+  "budget_usd": 6000.0,
+  "niche": "tech"
+ },
+ {
+  "id": "cp_054",
+  "brand_id": "br_027",
+  "title": "Parenting launch 054",
+  "brief": "We are launching kids snacks and want creators who document family life. Looking for premium content about mom life, newborn, activities.",
+  "target_countries": [
+   "GB"
+  ],
+  "min_followers": 50000,
+  "max_followers": 1000000,
+  "budget_usd": 800.0,
+  "niche": "parenting"
+ },
+ {
+  "id": "cp_055",
+  "brand_id": "br_002",
+  "title": "Fitness launch 055",
+  "brief": "We are launching resistance bands and want creators who lift weights. Looking for premium content about gym, strength, hiit.",
+  "target_countries": [
+   "ES",
+   "DE"
+  ],
+  "min_followers": 10000,
+  "max_followers": 200000,
+  "budget_usd": 1500.0,
+  "niche": "fitness"
+ },
+ {
+  "id": "cp_056",
+  "brand_id": "br_036",
+  "title": "Fitness launch 056",
+  "brief": "We are launching protein powder and want creators who run marathons. Looking for down-to-earth content about workout, athlete, strength.",
+  "target_countries": [
+   "BR",
+   "ES"
+  ],
+  "min_followers": 25000,
+  "max_followers": 1250000,
+  "budget_usd": 1500.0,
+  "niche": "fitness"
+ },
+ {
+  "id": "cp_057",
+  "brand_id": "br_011",
+  "title": "Fitness launch 057",
+  "brief": "We are launching resistance bands and want creators who run marathons. Looking for authentic content about strength, training, workout.",
+  "target_countries": [
+   "TR"
+  ],
+  "min_followers": 50000,
+  "max_followers": 1000000,
+  "budget_usd": 3000.0,
+  "niche": "fitness"
+ },
+ {
+  "id": "cp_058",
+  "brand_id": "br_011",
+  "title": "Gaming launch 058",
+  "brief": "We are launching mechanical keyboards and want creators who review new releases. Looking for premium content about pc build, multiplayer, streaming.",
+  "target_countries": [
+   "DE"
+  ],
+  "min_followers": 50000,
+  "max_followers": 1000000,
+  "budget_usd": 12000.0,
+  "niche": "gaming"
+ },
+ {
+  "id": "cp_059",
+  "brand_id": "br_001",
+  "title": "Beauty launch 059",
+  "brief": "We are launching hair oil and want creators who review makeup palettes. Looking for premium content about serum, glow, makeup.",
+  "target_countries": [
+   "GB",
+   "DE"
+  ],
+  "min_followers": 5000,
+  "max_followers": 40000,
+  "budget_usd": 800.0,
+  "niche": "beauty"
+ },
+ {
+  "id": "cp_060",
+  "brand_id": "br_036",
+  "title": "Travel launch 060",
+  "brief": "We are launching luggage and want creators who guide city weekends. Looking for authentic content about backpacking, adventure, road trip.",
+  "target_countries": [
+   "FR",
+   "DE"
+  ],
+  "min_followers": 5000,
+  "max_followers": 100000,
+  "budget_usd": 6000.0,
+  "niche": "travel"
+ },
+ {
+  "id": "cp_061",
+  "brand_id": "br_034",
+  "title": "Fitness launch 061",
+  "brief": "We are launching resistance bands and want creators who coach home workouts. Looking for down-to-earth content about training, workout, protein.",
+  "target_countries": [
+   "TR",
+   "GB"
+  ],
+  "min_followers": 50000,
+  "max_followers": 2500000,
+  "budget_usd": 6000.0,
+  "niche": "fitness"
+ },
+ {
+  "id": "cp_062",
+  "brand_id": "br_003",
+  "title": "Finance launch 062",
+  "brief": "We are launching budgeting apps and want creators who teach investing basics. Looking for authentic content about frugal, savings, credit.",
+  "target_countries": [
+   "GB"
+  ],
+  "min_followers": 25000,
+  "max_followers": 200000,
+  "budget_usd": 6000.0,
+  "niche": "finance"
+ },
+ {
+  "id": "cp_063",
+  "brand_id": "br_001",
+  "title": "Beauty launch 063",
+  "brief": "We are launching makeup palette and want creators who post skincare routines. Looking for premium content about skincare, tutorial, routine.",
+  "target_countries": [
+   "FR"
+  ],
+  "min_followers": 25000,
+  "max_followers": 200000,
+  "budget_usd": 3000.0,
+  "niche": "beauty"
+ },
+ {
+  "id": "cp_064",
+  "brand_id": "br_005",
+  "title": "Finance launch 064",
+  "brief": "We are launching budgeting apps and want creators who teach investing basics. Looking for premium content about money, frugal, budgeting.",
+  "target_countries": [
+   "GB",
+   "TR"
+  ],
+  "min_followers": 5000,
+  "max_followers": 100000,
+  "budget_usd": 800.0,
+  "niche": "finance"
+ },
+ {
+  "id": "cp_065",
+  "brand_id": "br_005",
+  "title": "Finance launch 065",
+  "brief": "We are launching budgeting apps and want creators who teach investing basics. Looking for down-to-earth content about budgeting, side hustle, savings.",
+  "target_countries": [
+   "DE"
+  ],
+  "min_followers": 10000,
+  "max_followers": 80000,
+  "budget_usd": 12000.0,
+  "niche": "finance"
+ },
+ {
+  "id": "cp_066",
+  "brand_id": "br_035",
+  "title": "Parenting launch 066",
+  "brief": "We are launching kids snacks and want creators who review baby gear. Looking for educational content about newborn, toddler, activities.",
+  "target_countries": [
+   "FR"
+  ],
+  "min_followers": 5000,
+  "max_followers": 250000,
+  "budget_usd": 800.0,
+  "niche": "parenting"
+ },
+ {
+  "id": "cp_067",
+  "brand_id": "br_039",
+  "title": "Gaming launch 067",
+  "brief": "We are launching energy drinks and want creators who review new releases. Looking for premium content about esports, streaming, multiplayer.",
+  "target_countries": [
+   "DE",
+   "CA"
+  ],
+  "min_followers": 50000,
+  "max_followers": 2500000,
+  "budget_usd": 1500.0,
+  "niche": "gaming"
+ },
+ {
+  "id": "cp_068",
+  "brand_id": "br_005",
+  "title": "Parenting launch 068",
+  "brief": "We are launching educational toys and want creators who review baby gear. Looking for authentic content about toddler, mom life, activities.",
+  "target_countries": [
+   "DE"
+  ],
+  "min_followers": 10000,
+  "max_followers": 200000,
+  "budget_usd": 6000.0,
+  "niche": "parenting"
+ },
+ {
+  "id": "cp_069",
+  "brand_id": "br_002",
+  "title": "Parenting launch 069",
+  "brief": "We are launching kids snacks and want creators who review baby gear. Looking for fun content about mom life, toddler, kids.",
+  "target_countries": [
+   "US",
+   "BR"
+  ],
+  "min_followers": 50000,
+  "max_followers": 1000000,
+  "budget_usd": 800.0,
+  "niche": "parenting"
+ },
+ {
+  "id": "cp_070",
+  "brand_id": "br_004",
+  "title": "Nutrition launch 070",
+  "brief": "We are launching vitamin supplements and want creators who cook plant-based dinners. Looking for authentic content about recipes, meal prep, diet.",
+  "target_countries": [
+   "FR",
+   "ES"
+  ],
+  "min_followers": 25000,
+  "max_followers": 1250000,
+  "budget_usd": 1500.0,
+  "niche": "nutrition"
+ },
+ {
+  "id": "cp_071",
+  "brand_id": "br_009",
+  "title": "Home launch 071",
+  "brief": "We are launching houseplants and want creators who teach diy projects. Looking for down-to-earth content about furniture, interior, decor.",
+  "target_countries": [
+   "DE"
+  ],
+  "min_followers": 50000,
+  "max_followers": 2500000,
+  "budget_usd": 6000.0,
+  "niche": "home"
+ },
+ {
+  "id": "cp_072",
+  "brand_id": "br_013",
+  "title": "Fitness launch 072",
+  "brief": "We are launching running shoes and want creators who coach home workouts. Looking for premium content about mobility, hiit, gym.",
+  "target_countries": [
+   "CA"
+  ],
+  "min_followers": 50000,
+  "max_followers": 1000000,
+  "budget_usd": 12000.0,
+  "niche": "fitness"
+ },
+ {
+  "id": "cp_073",
+  "brand_id": "br_021",
+  "title": "Beauty launch 073",
+  "brief": "We are launching facial serum and want creators who teach hair tutorials. Looking for fun content about cosmetics, serum, haircare.",
+  "target_countries": [
+   "US"
+  ],
+  "min_followers": 10000,
+  "max_followers": 500000,
+  "budget_usd": 800.0,
+  "niche": "beauty"
+ },
+ {
+  "id": "cp_074",
+  "brand_id": "br_009",
+  "title": "Fitness launch 074",
+  "brief": "We are launching running shoes and want creators who lift weights. Looking for premium content about strength, athlete, training.",
+  "target_countries": [
+   "GB",
+   "FR"
+  ],
+  "min_followers": 10000,
+  "max_followers": 500000,
+  "budget_usd": 6000.0,
+  "niche": "fitness"
+ },
+ {
+  "id": "cp_075",
+  "brand_id": "br_014",
+  "title": "Gaming launch 075",
+  "brief": "We are launching energy drinks and want creators who review new releases. Looking for authentic content about esports, pc build, gameplay.",
+  "target_countries": [
+   "BR"
+  ],
+  "min_followers": 5000,
+  "max_followers": 100000,
+  "budget_usd": 12000.0,
+  "niche": "gaming"
+ },
+ {
+  "id": "cp_076",
+  "brand_id": "br_002",
+  "title": "Travel launch 076",
+  "brief": "We are launching booking apps and want creators who document road trips. Looking for down-to-earth content about itinerary, adventure, hotels.",
+  "target_countries": [
+   "DE"
+  ],
+  "min_followers": 25000,
+  "max_followers": 200000,
+  "budget_usd": 1500.0,
+  "niche": "travel"
+ },
+ {
+  "id": "cp_077",
+  "brand_id": "br_009",
+  "title": "Home launch 077",
+  "brief": "We are launching houseplants and want creators who teach diy projects. Looking for premium content about organizing, renovation, plants.",
+  "target_countries": [
+   "GB"
+  ],
+  "min_followers": 10000,
+  "max_followers": 80000,
+  "budget_usd": 1500.0,
+  "niche": "home"
+ },
+ {
+  "id": "cp_078",
+  "brand_id": "br_010",
+  "title": "Fitness launch 078",
+  "brief": "We are launching protein powder and want creators who coach home workouts. Looking for down-to-earth content about hiit, athlete, gym.",
+  "target_countries": [
+   "US"
+  ],
+  "min_followers": 10000,
+  "max_followers": 500000,
+  "budget_usd": 3000.0,
+  "niche": "fitness"
+ },
+ {
+  "id": "cp_079",
+  "brand_id": "br_011",
+  "title": "Travel launch 079",
+  "brief": "We are launching travel backpacks and want creators who guide city weekends. Looking for authentic content about hiking, itinerary, destinations.",
+  "target_countries": [
+   "FR"
+  ],
+  "min_followers": 10000,
+  "max_followers": 500000,
+  "budget_usd": 1500.0,
+  "niche": "travel"
+ }
+]
