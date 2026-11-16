@@ -2,6 +2,7 @@
 
 **Explainable brand ↔ creator matching for an influencer-marketing marketplace: embedding retrieval with pgvector, then a hybrid re-rank that says *why* each creator was picked.**
 
+[![CI](https://github.com/DanielYamanoglu/matchfluence-matching/actions/workflows/ci.yml/badge.svg)](https://github.com/DanielYamanoglu/matchfluence-matching/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/Python-3.12-blue)
 ![FastAPI](https://img.shields.io/badge/FastAPI-service-009688)
 ![Supabase](https://img.shields.io/badge/Supabase-pgvector-3ECF8E)
