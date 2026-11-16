@@ -122,12 +122,12 @@ def plot(results: dict, path: Path) -> None:
         for b, v in zip(bars, vals):
             ax.text(b.get_x() + b.get_width() / 2, v + 0.01, f"{v:.3f}", ha="center", fontsize=8)
     ax.set_xticks(range(len(metrics)), [f"Precision@{K}", f"nDCG@{K}"])
-    ax.set_ylim(0, 1.05)
+    ax.set_ylim(0, 1.2)  # headroom so the legend row clears the bars
     ax.set_ylabel("Mean over campaigns")
     ax.set_title(f"Synthetic benchmark ({results['campaigns_evaluated']} campaigns, "
                  f"{results['embedder']} embeddings)", fontsize=10)
     ax.spines[["top", "right"]].set_visible(False)
-    ax.legend(frameon=False)
+    ax.legend(frameon=False, loc="upper center", ncol=3)
     fig.tight_layout()
     fig.savefig(path, facecolor="white")
 

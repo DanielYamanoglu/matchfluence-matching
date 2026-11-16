@@ -1,4 +1,4 @@
-"""FastAPI service. Run: uvicorn matching.api:app --app-dir src"""
+"""FastAPI service. Run: uvicorn matching.api:create_app --factory --app-dir src"""
 from __future__ import annotations
 
 import uuid

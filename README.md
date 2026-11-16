@@ -1,33 +1,35 @@
 # Matchfluence Matching Engine
 
-**Explainable brand ↔ creator matching for an influencer-marketing marketplace: embedding retrieval with pgvector, then a hybrid re-rank that says *why* each creator was picked.**
+**Explainable brand ↔ creator matching for an influencer-marketing marketplace: embedding retrieval, then a hybrid re-rank that says *why* each creator was picked.** The demo runs in memory; the same retrieval step is written for Supabase/pgvector as reference SQL.
 
 [![CI](https://github.com/DanielYamanoglu/matchfluence-matching/actions/workflows/ci.yml/badge.svg)](https://github.com/DanielYamanoglu/matchfluence-matching/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/Python-3.12-blue)
 ![FastAPI](https://img.shields.io/badge/FastAPI-service-009688)
-![Supabase](https://img.shields.io/badge/Supabase-pgvector-3ECF8E)
+![pgvector](https://img.shields.io/badge/pgvector-reference%20SQL-3ECF8E)
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-TF--IDF-F7931E)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 > Matchfluence is a B2B SaaS marketplace I built the backend for (Supabase). The production code is private. This repo rebuilds the **matching approach** from scratch as a standalone demo on **synthetic data**. Every brand, creator and campaign here is generated.
 
-<p align="center"><img src="assets/architecture.svg" width="860" alt="Brief to embedding to pgvector retrieval to hybrid re-rank to explained matches"></p>
+<p align="center"><img src="assets/architecture.svg" width="860" alt="Brief to embedding to vector retrieval to hybrid re-rank to explained matches"></p>
 
 ## How it works
 
-1. **Embed:** creator profiles (niche, bio, content topics) and campaign briefs become vectors. The default is `all-MiniLM-L6-v2` via sentence-transformers. A deterministic TF-IDF embedder kicks in when that isn't installed, so everything runs offline.
-2. **Retrieve (stage 1, in Postgres):** [`match_creators()`](supabase/migrations/20260101000100_match_function.sql) applies hard filters (audience country share, follower range, budget), then orders by pgvector cosine distance. It runs as `security invoker`, so [RLS](supabase/migrations/20260101000200_rls.sql) applies to the calling brand.
+1. **Embed:** creator profiles (niche, bio, content topics) and campaign briefs become vectors. A deterministic TF-IDF embedder is used out of the box, so everything runs offline; every number in this README comes from it. `all-MiniLM-L6-v2` via sentence-transformers is an optional drop-in (`requirements-optional.txt`) that was not benchmarked here.
+2. **Retrieve (stage 1):** hard filters (audience country share, follower range, budget), then cosine top-k. In this repo that runs over an in-memory NumPy index. The same step is written for Postgres in [`match_creators()`](supabase/migrations/20260101000100_match_function.sql): pgvector cosine distance with an HNSW index, `security invoker` so [RLS](supabase/migrations/20260101000200_rls.sql) applies to the calling brand. That SQL is a reference design and is not executed by anything here (see [Status and limits](#status-and-limits)).
 3. **Re-rank (stage 2, in the app):** [`scoring.py`](src/matching/scoring.py) adds the rule features to the semantic score:
 
    | Feature | Weight | Meaning |
    |---|---|---|
-   | semantic | 0.50 | brief ↔ profile similarity, scaled to [0, 1] |
+   | semantic | 0.50 | brief ↔ profile similarity, min-max scaled to [0, 1] within the retrieved candidate pool |
    | audience_overlap | 0.20 | share of the creator's audience in the target countries |
    | engagement | 0.10 | engagement rate vs an 8 % benchmark |
    | budget_fit | 0.10 | rate within budget, preferring creators that use it well |
    | past_performance | 0.10 | historical campaign outcome score |
 
 4. **Explain:** every match returns its score breakdown plus a one-line reason.
+
+Because the semantic score is scaled within the candidate pool (5·k candidates), it is a relative rank signal, not a raw cosine similarity, and final scores shift slightly with `k`.
 
 ```text
 #1 @demo_creator_0700  score=0.788  semantic=0.49  audience_overlap=0.07  engagement=0.10 ...
@@ -46,7 +48,7 @@ uvicorn matching.api:create_app --factory --app-dir src
 |---|---|---|
 | GET | `/health` | status, number of creators, active embedder |
 | GET | `/campaigns` | list campaigns |
-| POST | `/campaigns/{id}/matches` | top-k explained matches (optional `k`, filters) |
+| POST | `/campaigns/{id}/matches` | top-k explained matches (optional `k`) |
 | POST | `/creators` | add a creator; embedded and indexed on insert |
 
 Interactive docs are at `/docs`.
@@ -67,7 +69,7 @@ Hybrid vs semantic-only, with 95 % bootstrap CIs:
 
 Hybrid ranks the best creators higher and brings in audiences that better match the target countries. It trades a little raw precision for that.
 
-The synthetic labels weight topical fit heavily, which favours a pure text model by construction. Treat these numbers as a sanity check of the pipeline, not as a production benchmark.
+Read these numbers as a sanity check of the pipeline, not as a benchmark. The relevance labels are generated by a formula that uses topical fit plus the same audience, engagement, budget and past-performance features the re-ranker scores, so the hybrid gain is partly circular; bios and briefs draw on shared per-niche vocabularies, and the TF-IDF vocabulary is fitted on creators and evaluation briefs together.
 
 <p align="center"><img src="reports/figures/retrieval_quality.png" width="640" alt="Retrieval quality by method"></p>
 
@@ -97,11 +99,12 @@ tests/                 scoring, filters, matcher, API
 
 ## Status and limits
 
-- The SQL migrations parse cleanly but were not executed against a live Postgres in this repo. `PgVectorIndex` is not covered by the test suite.
+- The Postgres path is an unexecuted sketch. The SQL migrations were not run against a live database, `PgVectorIndex` is not used by the API, demo, evaluation or tests, the schema uses `uuid` keys while the demo data uses string ids, and nothing writes `campaigns.brief_embedding` yet.
 - Weights are hand-set. Learning them from campaign outcomes (learning-to-rank) is the obvious next step.
 
 ## What I'd do next
 
+- Make the Postgres path real: seed a local Supabase with uuid ids, write brief embeddings, and add an integration test that compares `match_creators()` with the in-memory index.
 - Learn the re-rank weights from accepted/declined offers (LambdaMART or a small pairwise model).
 - Add an LLM pass that rewrites the explanation for the brand and flags brand-safety risks.
 - Add integration tests against a Supabase local stack in CI.

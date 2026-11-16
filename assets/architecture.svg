@@ -5,7 +5,7 @@
     </marker>
   </defs>
   <rect width="960" height="340" rx="12" fill="#0f172a"/>
-  <text x="480" y="36" text-anchor="middle" fill="#e2e8f0" font-size="18" font-weight="600">Two-stage matching: retrieve with pgvector, re-rank with explainable rules</text>
+  <text x="480" y="36" text-anchor="middle" fill="#e2e8f0" font-size="18" font-weight="600">Two-stage matching: retrieve by embedding similarity, re-rank with explainable rules</text>
 
   <g font-size="14" fill="#e2e8f0" text-anchor="middle">
     <rect x="24" y="110" width="150" height="100" rx="10" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
@@ -15,13 +15,13 @@
 
     <rect x="214" y="110" width="150" height="100" rx="10" fill="#1e293b" stroke="#a78bfa" stroke-width="2"/>
     <text x="289" y="146" font-weight="600">Embedding</text>
-    <text x="289" y="168" font-size="12" fill="#94a3b8">MiniLM-L6-v2 (384-d)</text>
-    <text x="289" y="186" font-size="12" fill="#94a3b8">or TF-IDF fallback</text>
+    <text x="289" y="168" font-size="12" fill="#94a3b8">TF-IDF (default here)</text>
+    <text x="289" y="186" font-size="12" fill="#94a3b8">MiniLM-L6-v2 optional</text>
 
     <rect x="404" y="110" width="150" height="100" rx="10" fill="#1e293b" stroke="#34d399" stroke-width="2"/>
     <text x="479" y="146" font-weight="600">Vector retrieval</text>
-    <text x="479" y="168" font-size="12" fill="#94a3b8">pgvector cosine top 5k</text>
-    <text x="479" y="186" font-size="12" fill="#94a3b8">or in-memory numpy</text>
+    <text x="479" y="168" font-size="12" fill="#94a3b8">in-memory NumPy, top 5k</text>
+    <text x="479" y="186" font-size="12" fill="#94a3b8">pgvector SQL as reference</text>
 
     <rect x="594" y="110" width="150" height="100" rx="10" fill="#1e293b" stroke="#fbbf24" stroke-width="2"/>
     <text x="669" y="146" font-weight="600">Hybrid re-rank</text>
@@ -44,7 +44,7 @@
   <g font-size="12" fill="#94a3b8" text-anchor="middle">
     <rect x="404" y="244" width="150" height="48" rx="8" fill="#1e293b" stroke="#475569" stroke-dasharray="5 4"/>
     <text x="479" y="264" fill="#e2e8f0">creator_embeddings</text>
-    <text x="479" y="282">Postgres + HNSW index</text>
+    <text x="479" y="282">reference schema (pgvector)</text>
     <line x1="479" y1="244" x2="479" y2="214" stroke="#475569" stroke-width="2" stroke-dasharray="5 4"/>
     <text x="289" y="268">Creator profiles are embedded</text>
     <text x="289" y="284">offline and upserted on POST /creators</text>
