@@ -16,3 +16,38 @@ jobs:
       - run: uv pip install -r requirements.txt pytest
 
       - run: .venv/bin/python -m pytest -q
+
+  pgvector:
+    runs-on: ubuntu-latest
+    services:
+      db:
+        image: pgvector/pgvector:0.8.0-pg17
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: matching
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d matching"
+          --health-interval 2s --health-timeout 3s --health-retries 30
+    env:
+      TEST_DATABASE_URL: postgresql://postgres:postgres@localhost:5432/matching
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/matching
+      MATCHING_EMBEDDER: tfidf
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.12"
+      - run: uv pip install -r requirements.txt pytest "psycopg[binary]>=3.1"
+
+      - name: Integration test (fails if it was skipped)
+        run: |
+          .venv/bin/python -m pytest -q -rs tests/test_pgvector_integration.py | tee pytest.out
+          ! grep -q skipped pytest.out
+
+      - name: Seed and run the demo against Postgres
+        run: |
+          .venv/bin/python scripts/seed_db.py --reset
+          .venv/bin/python scripts/demo.py cp_000 3
