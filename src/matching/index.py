@@ -1,6 +1,7 @@
 """Vector indexes with one interface: in-memory numpy for the demo, pgvector for Postgres."""
 from __future__ import annotations
 
+import json
 from dataclasses import dataclass, field
 from typing import Protocol, Sequence
 
@@ -47,7 +48,9 @@ class Hit:
 class VectorIndex(Protocol):
     def upsert(self, creator: Creator, vector: np.ndarray) -> None: ...
 
-    def search(self, query: np.ndarray, k: int, flt: CandidateFilter) -> list[Hit]: ...
+    def search_campaign(self, campaign: Campaign, query: np.ndarray, k: int) -> list[Hit]:
+        """Top-k creators for `campaign` (query = its brief embedding) after its hard filters."""
+        ...
 
     def get_many(self, ids: Sequence[str]) -> list[Creator]: ...
 
@@ -84,6 +87,9 @@ class InMemoryIndex:
         top = np.argsort(-sims, kind="stable")[:k]
         return [Hit(self._ids[i], float(sims[i])) for i in top if np.isfinite(sims[i])]
 
+    def search_campaign(self, campaign: Campaign, query: np.ndarray, k: int) -> list[Hit]:
+        return self.search(query, k, CandidateFilter.from_campaign(campaign))
+
     def get_many(self, ids: Sequence[str]) -> list[Creator]:
         return [self._creators[i] for i in ids]
 
@@ -94,75 +100,90 @@ class InMemoryIndex:
 class PgVectorIndex:
     """Same interface backed by Postgres + pgvector (schema in supabase/migrations).
 
-    Not exercised by the test suite (needs a live database); the SQL mirrors
-    `match_creators` and `CandidateFilter`. Requires `psycopg[binary]`.
+    Retrieval calls the SQL function `match_creators()`, so the hard filters live in one
+    place on this path. Requires `psycopg[binary]`; the database is seeded by
+    scripts/seed_db.py. Exercised by tests/test_pgvector_integration.py.
     """
 
-    MODEL_ID = "demo"
-
-    def __init__(self, dsn: str):
+    def __init__(self, dsn: str, model: str):
         import psycopg  # optional dependency
 
+        self.model = model
         self._conn = psycopg.connect(dsn, autocommit=True)
 
+    def close(self) -> None:
+        self._conn.close()
+
     @staticmethod
-    def _vec(v: np.ndarray) -> str:
-        return "[" + ",".join(f"{x:.6f}" for x in np.asarray(v).ravel()) + "]"
+    def vec(v: np.ndarray) -> str:
+        # repr of each float32 value round-trips exactly into pgvector's float4 storage
+        return "[" + ",".join(map(repr, np.asarray(v, dtype=np.float32).ravel().tolist())) + "]"
+
+    def stored_models(self) -> set[str]:
+        with self._conn.cursor() as cur:
+            cur.execute("select distinct model from creator_embeddings")
+            return {r[0] for r in cur.fetchall()}
 
     def upsert(self, creator: Creator, vector: np.ndarray) -> None:
-        import json
+        self.upsert_many([creator], [vector])
 
-        with self._conn.cursor() as cur:
-            cur.execute(
+    def upsert_many(self, creators: Sequence[Creator], vectors: Sequence[np.ndarray]) -> None:
+        with self._conn.transaction(), self._conn.cursor() as cur:
+            cur.executemany(
                 """insert into creators (id, handle, platform, bio, tags, audience_countries,
                        followers, engagement_rate, rate_usd, past_performance)
                    values (%s,%s,%s,%s,%s,%s::jsonb,%s,%s,%s,%s)
-                   on conflict (id) do update set bio = excluded.bio, tags = excluded.tags,
+                   on conflict (id) do update set handle = excluded.handle,
+                       platform = excluded.platform, bio = excluded.bio, tags = excluded.tags,
                        audience_countries = excluded.audience_countries,
                        followers = excluded.followers, engagement_rate = excluded.engagement_rate,
                        rate_usd = excluded.rate_usd, past_performance = excluded.past_performance""",
-                (creator.id, creator.handle, creator.platform, creator.bio, creator.tags,
-                 json.dumps(creator.audience_countries), creator.followers,
-                 creator.engagement_rate, creator.rate_usd, creator.past_performance),
+                [(c.id, c.handle, c.platform, c.bio, c.tags, json.dumps(c.audience_countries),
+                  c.followers, c.engagement_rate, c.rate_usd, c.past_performance)
+                 for c in creators],
             )
-            cur.execute(
+            cur.executemany(
                 """insert into creator_embeddings (creator_id, model, embedding)
                    values (%s, %s, %s::vector)
                    on conflict (creator_id) do update set embedding = excluded.embedding,
                        model = excluded.model, updated_at = now()""",
-                (creator.id, self.MODEL_ID, self._vec(vector)),
+                [(c.id, self.model, self.vec(v)) for c, v in zip(creators, vectors)],
             )
 
-    def search(self, query: np.ndarray, k: int, flt: CandidateFilter) -> list[Hit]:
-        sql = """
-            select cr.id, 1 - (ce.embedding <=> %(q)s::vector) as similarity
-            from creators cr join creator_embeddings ce on ce.creator_id = cr.id
-            where cr.followers between %(lo)s and %(hi)s
-              and cr.rate_usd <= %(rate)s
-              and (cardinality(%(countries)s::text[]) = 0 or exists (
-                    select 1 from unnest(%(countries)s::text[]) tc
-                    where coalesce((cr.audience_countries ->> tc)::numeric, 0) >= %(share)s))
-            order by ce.embedding <=> %(q)s::vector
-            limit %(k)s"""
-        params = {
-            "q": self._vec(query), "lo": flt.min_followers, "hi": flt.max_followers,
-            "rate": None if flt.max_rate_usd == float("inf") else flt.max_rate_usd,
-            "countries": list(flt.target_countries), "share": flt.min_audience_share, "k": k,
-        }
-        if params["rate"] is None:
-            params["rate"] = 10**9
+    def upsert_campaigns(self, campaigns: Sequence[Campaign], vectors: Sequence[np.ndarray]) -> None:
+        """Store campaigns with their brief embeddings (their brands must already exist)."""
+        with self._conn.transaction(), self._conn.cursor() as cur:
+            cur.executemany(
+                """insert into campaigns (id, brand_id, title, brief, target_countries,
+                       min_followers, max_followers, budget_usd, brief_embedding)
+                   values (%s,%s,%s,%s,%s,%s,%s,%s,%s::vector)
+                   on conflict (id) do update set brand_id = excluded.brand_id,
+                       title = excluded.title, brief = excluded.brief,
+                       target_countries = excluded.target_countries,
+                       min_followers = excluded.min_followers,
+                       max_followers = excluded.max_followers,
+                       budget_usd = excluded.budget_usd,
+                       brief_embedding = excluded.brief_embedding""",
+                [(c.id, c.brand_id, c.title, c.brief, c.target_countries, c.min_followers,
+                  c.max_followers, c.budget_usd, self.vec(v)) for c, v in zip(campaigns, vectors)],
+            )
+
+    def search_campaign(self, campaign: Campaign, query: np.ndarray, k: int) -> list[Hit]:
+        # Write the brief embedding first so match_creators() filters on the campaign as given.
+        self.upsert_campaigns([campaign], [query])
         with self._conn.cursor() as cur:
-            cur.execute(sql, params)
-            return [Hit(str(r[0]), float(r[1])) for r in cur.fetchall()]
+            cur.execute("select creator_id, similarity from match_creators(%s::text, %s::int, %s::numeric)",
+                        (campaign.id, k, MIN_AUDIENCE_SHARE))
+            return [Hit(r[0], float(r[1])) for r in cur.fetchall()]
 
     def get_many(self, ids: Sequence[str]) -> list[Creator]:
         with self._conn.cursor() as cur:
             cur.execute(
-                """select id::text, handle, platform, bio, tags, audience_countries, followers,
+                """select id, handle, platform, bio, tags, audience_countries, followers,
                           engagement_rate::float, rate_usd::float, past_performance::float
-                   from creators where id = any(%s::uuid[])""", (list(ids),))
-            rows = {str(r[0]): Creator(
-                id=str(r[0]), handle=r[1], platform=r[2], bio=r[3], tags=list(r[4]),
+                   from creators where id = any(%s::text[])""", (list(ids),))
+            rows = {r[0]: Creator(
+                id=r[0], handle=r[1], platform=r[2], bio=r[3], tags=list(r[4]),
                 audience_countries=r[5], followers=r[6], engagement_rate=r[7],
                 rate_usd=r[8], past_performance=r[9]) for r in cur.fetchall()}
         return [rows[i] for i in ids]

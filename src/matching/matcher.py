@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from .embedding import Embedder
-from .index import CandidateFilter, VectorIndex
+from .index import VectorIndex
 from .models import Campaign, Creator, CreatorIn, Match
 from .scoring import DEFAULT_WEIGHTS, Weights, explain, score
 
@@ -26,8 +26,7 @@ class Matcher:
 
     def match(self, campaign: Campaign, k: int = 10, weights: Weights | None = None) -> list[Match]:
         w = weights or self.weights
-        hits = self.index.search(self.embed_brief(campaign), k * OVERFETCH,
-                                 CandidateFilter.from_campaign(campaign))
+        hits = self.index.search_campaign(campaign, self.embed_brief(campaign), k * OVERFETCH)
         if not hits:
             return []
         creators = {c.id: c for c in self.index.get_many([h.creator_id for h in hits])}

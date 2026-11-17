@@ -26,3 +26,8 @@ def load_brands() -> list[Brand]:
 
 def load_relevance() -> dict[str, dict[str, int]]:
     return json.loads((DATA_DIR / "relevance.json").read_text())
+
+
+def embedding_corpus(creators: list[Creator], campaigns: list[Campaign]) -> list[str]:
+    """Texts the TF-IDF vocabulary is fitted on (creator profiles + campaign briefs)."""
+    return [c.text for c in creators] + [f"{c.title}. {c.brief}" for c in campaigns]

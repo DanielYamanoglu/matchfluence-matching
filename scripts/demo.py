@@ -15,7 +15,7 @@ def main() -> None:
     print(f"Campaign {cid}: {campaign.brief}")
     print(f"Filters: countries={campaign.target_countries} followers="
           f"{campaign.min_followers}-{campaign.max_followers} budget<=${campaign.budget_usd:,.0f}")
-    print(f"Embedder: {matcher.embedder.name}\n")
+    print(f"Embedder: {matcher.embedder.name}  Index: {s['backend']}\n")
     for m in matcher.match(campaign, k):
         parts = "  ".join(f"{n}={c.contribution:.2f}" for n, c in m.breakdown.components.items())
         print(f"#{m.rank} @{m.handle:<22} score={m.score:.3f}  {parts}")

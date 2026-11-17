@@ -1,15 +1,16 @@
 """FastAPI service. Run: uvicorn matching.api:create_app --factory --app-dir src"""
 from __future__ import annotations
 
+import os
 import uuid
 from contextlib import asynccontextmanager
 
 from fastapi import Depends, FastAPI, HTTPException, Request
 from pydantic import BaseModel, Field
 
-from .dataset import load_campaigns, load_creators
+from .dataset import embedding_corpus, load_campaigns, load_creators
 from .embedding import get_embedder
-from .index import InMemoryIndex
+from .index import InMemoryIndex, PgVectorIndex
 from .matcher import Matcher, creator_from_input
 from .models import Campaign, Creator, CreatorIn, Match
 
@@ -24,12 +25,27 @@ class MatchResponse(BaseModel):
     matches: list[Match]
 
 
-def build_state(embedder_pref: str | None = None) -> dict:
+def build_state(embedder_pref: str | None = None, database_url: str | None = None) -> dict:
+    """In-memory index by default; Postgres + pgvector when DATABASE_URL is set.
+
+    The Postgres database must already be seeded (scripts/seed_db.py) with the same
+    embedder, since creator vectors are read from it rather than recomputed here.
+    """
     creators, campaigns = load_creators(), load_campaigns()
-    corpus = [c.text for c in creators] + [f"{c.title}. {c.brief}" for c in campaigns]
-    matcher = Matcher(get_embedder(corpus, embedder_pref), InMemoryIndex())
-    matcher.add_creators(creators)
-    return {"matcher": matcher, "campaigns": {c.id: c for c in campaigns}}
+    embedder = get_embedder(embedding_corpus(creators, campaigns), embedder_pref)
+    dsn = database_url or os.getenv("DATABASE_URL")
+    if dsn:
+        index = PgVectorIndex(dsn, embedder.name)
+        if (stored := index.stored_models()) != {embedder.name}:
+            raise RuntimeError(f"database holds embeddings from {sorted(stored)}, but the "
+                               f"active embedder is {embedder.name!r}; reseed or set "
+                               "MATCHING_EMBEDDER")
+        matcher = Matcher(embedder, index)
+    else:
+        matcher = Matcher(embedder, InMemoryIndex())
+        matcher.add_creators(creators)
+    return {"matcher": matcher, "campaigns": {c.id: c for c in campaigns},
+            "backend": "postgres" if dsn else "memory"}
 
 
 def create_app(embedder_pref: str | None = None) -> FastAPI:
@@ -52,7 +68,8 @@ def create_app(embedder_pref: str | None = None) -> FastAPI:
     @app.get("/health", tags=["meta"])
     def health(s: dict = Depends(state)):
         m: Matcher = s["matcher"]
-        return {"status": "ok", "creators": len(m.index), "embedder": m.embedder.name}
+        return {"status": "ok", "creators": len(m.index), "embedder": m.embedder.name,
+                "index": s["backend"]}
 
     @app.get("/campaigns", response_model=list[Campaign], tags=["campaigns"])
     def list_campaigns(s: dict = Depends(state)):
