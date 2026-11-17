@@ -2,12 +2,12 @@
 -- after hard filters (audience country, follower range, budget).
 -- Stage 2 (hybrid re-rank + explanation) happens in the application layer.
 create or replace function match_creators(
-  p_campaign_id uuid,
+  p_campaign_id text,
   p_k int default 50,
   p_min_audience_share numeric default 0.20
 )
 returns table (
-  creator_id uuid,
+  creator_id text,
   similarity double precision,
   followers integer,
   rate_usd numeric
@@ -36,6 +36,8 @@ as $$
         where coalesce((cr.audience_countries ->> tc)::numeric, 0) >= p_min_audience_share
       )
     )
-  order by ce.embedding <=> c.brief_embedding
+  -- exact scan: the query vector comes from a join, so the HNSW index is not used here;
+  -- id breaks exact ties so results are deterministic
+  order by ce.embedding <=> c.brief_embedding, cr.id
   limit least(greatest(p_k, 1), 500);
 $$;

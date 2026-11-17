@@ -1,8 +1,10 @@
 -- Schema for the matching demo: Postgres + pgvector (Supabase-compatible).
+-- Domain ids are text (e.g. cr_0000, cp_000) so the synthetic dataset and the API ids
+-- are stored as-is; brand_members.user_id stays uuid because it is an auth user id.
 create extension if not exists vector;
 
 create table brands (
-  id          uuid primary key default gen_random_uuid(),
+  id          text primary key default gen_random_uuid()::text,
   name        text not null,
   industry    text,
   created_at  timestamptz not null default now()
@@ -10,13 +12,13 @@ create table brands (
 
 -- Which authenticated users belong to which brand (used by RLS policies).
 create table brand_members (
-  brand_id uuid not null references brands(id) on delete cascade,
+  brand_id text not null references brands(id) on delete cascade,
   user_id  uuid not null,
   primary key (brand_id, user_id)
 );
 
 create table creators (
-  id                 uuid primary key default gen_random_uuid(),
+  id                 text primary key default gen_random_uuid()::text,
   handle             text not null unique,
   platform           text not null,
   bio                text not null,
@@ -31,8 +33,8 @@ create table creators (
 );
 
 create table campaigns (
-  id               uuid primary key default gen_random_uuid(),
-  brand_id         uuid not null references brands(id) on delete cascade,
+  id               text primary key default gen_random_uuid()::text,
+  brand_id         text not null references brands(id) on delete cascade,
   title            text not null,
   brief            text not null,
   target_countries text[] not null default '{}',
@@ -44,7 +46,7 @@ create table campaigns (
 );
 
 create table creator_embeddings (
-  creator_id uuid primary key references creators(id) on delete cascade,
+  creator_id text primary key references creators(id) on delete cascade,
   model      text not null,           -- e.g. all-MiniLM-L6-v2 or tfidf
   embedding  vector(384) not null,
   updated_at timestamptz not null default now()
@@ -52,8 +54,8 @@ create table creator_embeddings (
 
 create table match_results (
   id          uuid primary key default gen_random_uuid(),
-  campaign_id uuid not null references campaigns(id) on delete cascade,
-  creator_id  uuid not null references creators(id) on delete cascade,
+  campaign_id text not null references campaigns(id) on delete cascade,
+  creator_id  text not null references creators(id) on delete cascade,
   score       numeric(6,5) not null,
   breakdown   jsonb not null,         -- per-feature value / weight / contribution
   created_at  timestamptz not null default now(),
